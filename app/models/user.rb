@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   has_many :authored_reviews, class_name: 'Review'
   has_many :reviews, as: :comment
+  has_many :items
   belongs_to :city
 
   validates :name, :surname, :age, presence: true
