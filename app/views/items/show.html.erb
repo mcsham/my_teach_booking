@@ -1,14 +1,46 @@
 <p id="notice"><%= notice %></p>
+<div class="table">
+  <div class="row">
+    <div class="col-sm-2">
+      <strong><%= t "form.category" %>:</strong>
+    </div>
+    <div class="col-sm-8">
+      <%= link_to(@category.title, items_path(category: @category.id)) %>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-2">
+      <strong><%= t"form.title" %>:</strong>
+    </div>
+    <div class="col-sm-8">
+      <%= @item.name %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2">
+      <strong><%= t"form.image" %>:</strong>
+    </div>
+    <div class="col-sm-2">
+      <%= image_tag (@item.url) %>
+    </div>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @item.name %>
-</p>
-<p> <%= image_tag (@item.url) %></p>
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
-
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', items_path %>
+  <div class="row">
+    <div class="col-sm-2">
+      <strong><%= t"form.description" %>:</strong>
+    </div>
+    <div class="col-sm-6">
+      <%= @item.description %>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-10">
+      <button class="btn btn-primary" value="Input Button" onclick="location.href = '<%= items_path %>'"><%= t "helpers.links.back" %></button>
+    </div>
+    <div class="col-sm-2">
+      <button class="btn btn-warning" value="Input Button" onclick="location.href = '<%= edit_item_path(@item) %>'"><%= t "helpers.links.edit" %></button>
+    </div>
+  </div>
+</div>

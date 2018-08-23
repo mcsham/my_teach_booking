@@ -11,6 +11,7 @@ class ItemsController < ApplicationController
   # GET /items/1
   # GET /items/1.json
   def show
+    @category = @item.category
   end
 
   # GET /items/new
