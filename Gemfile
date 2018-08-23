@@ -69,3 +69,6 @@ gem 'simple_form'
 gem 'country_select'
 gem 'devise'
 gem 'kaminari'
+
+gem 'bullet', group: 'development'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'

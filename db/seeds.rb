@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+cities = %w[Lviv Kyiv Ternopil' Rudno]
+cities.each do|city|
+  City.create(title: city)
+end
+categities = %w[technicis sport software]
+categities.each do |categoty|
+  Category.create(title: categoty)
+end
+
