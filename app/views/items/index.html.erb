@@ -1,29 +1,94 @@
-<p id="notice"><%= notice %></p>
+<div>
+  <h3><%= t "pages.categories" %></h3>
+  <%= @categories.map { |c|  link_to( c.title, items_path(category: c.id), class: (@cat_param and @cat_param.include?(c.id.to_s))?"admin":"")}.join(" | ").html_safe  %>
+</div>
 
-<h1>Items</h1>
+<%#= paginate @pages%>
+<h1><%= t "pages.article" %></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8">
+      <% if @items.any? %>
+          <% @items.each_with_index do |item, index| %>
+              <div class="row">
+                <div class="col-xs-9">#<%= index + 1 %>
+                  <br>
+                  <div class="col-xs-13"><h3><strong><%= item.name %></strong></h3></div>
+                  <% a = truncate item.description, length: 500 %>
+                  <div class="col-xs-7"><%= a %></div>
+                  <div class="col-xs-5">
+                    <div class="row">
+                      <div class="col-xs-6"><strong><%= t "pages.categories" %>:</strong></div>
+                      <div class="col-xs-6"><%= link_to(item.category.title, items_path(category: [item.category.id])) %></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-6"><strong><%= t "form.autor" %>:</strong></div>
+                      <div class="col-xs-6"><%= link_to "#{item.user.email}", items_path(email: item.user.email) %> </div>
+                    </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <br>
+                <div class="col-xs-8"><%= link_to ('<button class="btn btn-primary">' + "#{t "helpers.links.show"}" + '</button>').html_safe, item %></div>
+                <% if current_user%>
+                    <% if (item.user == current_user and current_user.author?) or current_user.admin? %>
+                        <div class="col-xs-2"><%= link_to ('<button class="btn btn-warning">' + "#{t "helpers.links.edit"}" + '</button>').html_safe, edit_item_path(item) %></div>
+                        <div class="col-xs-2"><%= link_to ('<button class="btn btn-danger">' + "#{t "helpers.links.delete"}" + '</button>').html_safe, item, method: :delete, data: {confirm: 'Are you sure?'} %></div>
+                    <% end %>
+                <% end %>
+              </div>
+              <hr>
+          <% end else %>
+          <div class="col-xs-8">
+            <strong> There are results</strong>
+          </div>
+      <% end %>
+    </div>
+    <div class="col-xs-3">
+      <div class="well sidebar-nav">
+        <h3><%= t "form.search"%></h3>
+        <form action="<%= items_path %>" class="navbar-form" method="get">
+          <div class="form-group">
+            <input type="text" name="q" class="form-control" placeholder=<%= t "form.search"%> value="<%= params[:q] %>">
+            <% @categories.map do |f| %>
+                <div>
+                  <input type="checkbox" name="category[]" , value=<%= f.id %>>
+                  <label><%= f.title %></label>
+                </div>
+            <% end %>
+          </div>
+          <button type="submit" class="btn btn-default"><%= t "form.search"%></button>
+        </form>
+      </div><!--/.well -->
+    </div><!--/span-->
+  </div>
+</div>
+</div>
 
-  <tbody>
-    <% @items.each do |item| %>
-      <tr>
-        <td><%= item.name %></td>
-        <td><%= item.description %></td>
-        <td><%= link_to 'Show', item %></td>
-        <td><%= link_to 'Edit', edit_item_path(item) %></td>
-        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
+<!--<table class="table table-hover">-->
+<!--  <thead>-->
+<!--    <tr>-->
+<!--      <th>Title</th>-->
+<!--    </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<%# if @pages.count > 0 %>
+<%# @pages.each do |page| %>
+<!--        <tr>-->
+<!--          <td><%#= page.title %></td>-->
+<!--          <td><%#= link_to "#{t "helpers.links.show"}", page %></td>-->
+<%# if page.user == current_user  %>
+<!--            <td><%#= link_to "#{t "helpers.links.edit"}", edit_page_path(page) %></td>-->
+<!--            <td><%#= link_to "#{t "helpers.links.delete"}", page, method: :delete, data: {confirm: 'Are you sure?'}  %></td>-->
+<%# end %>
+<!--        </tr>-->
+<%#end else%>
+<!--      <tr><td colspan="4">There are results</td></tr>-->
+<%# end %>
+<!--  </tbody>-->
+<!--</table>-->
 
-<%= link_to '<button type="button" class="btn btn-primary">New item</button>'.html_safe, new_item_path %>
+<%= paginate @items %>

@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :items
   belongs_to :city
 
+  after_initialize :set_default_role, if: :new_record?
+
   validates :name, :surname, :age, presence: true
   VALID_EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true,
@@ -18,4 +20,10 @@ class User < ApplicationRecord
             uniqueness: true
   validates :password, length: { minimum: 8, maximum: 25 }
 
+
+  enum role: %i(user admin author)
+
+  def set_default_role
+    self.role ||= :user
+  end
 end

@@ -1,11 +1,18 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_categories
   before_action :authenticate_user!, except: [:index, :show]
 
   # GET /items
   # GET /items.json
   def index
-    @items = Item.all
+    @items = Item.includes(:user, :category).all
+    @cat_param = params[:category]
+    if @cat_param
+      @items = @items.by_category(@cat_param)
+    end
+    @items = @items.search(params[:q]) if params[:q] and !params[:q].empty?
+    @items = @items.page(params[:item]).per(10)
   end
 
   # GET /items/1
@@ -73,5 +80,9 @@ class ItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params.require(:item).permit(:name, :description, :category_id, :url)
+    end
+
+    def set_categories
+      @categories = Category.all
     end
 end

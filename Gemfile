@@ -71,4 +71,5 @@ gem 'devise'
 gem 'kaminari'
 
 gem 'bullet', group: 'development'
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master',group: 'development'
+gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 5.x
