@@ -11,9 +11,12 @@ class Item < ApplicationRecord
 
   scope :search, ->(query) do
                    where("title LIKE ('%#{query}%')").
-                       or(Page.where("description LIKE ('%#{query}%')"))
+                       or(Item.where("description LIKE ('%#{query}%')"))
                  end
   scope :by_category, ->(category_id) do
         joins(:category).where(categories: { id: category_id })
-    end
+  end
+  scope :by_nickname, ->(nickname) do
+    joins(:user).where(users: {nickname: nickname})
+  end
 end

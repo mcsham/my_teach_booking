@@ -6,11 +6,10 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.includes(:user, :category).all
+    @items = Item.includes(:user, :category)
     @cat_param = params[:category]
-    if @cat_param
-      @items = @items.by_category(@cat_param)
-    end
+    @items = @items.by_category(@cat_param)if @cat_param
+    @items = @items.by_nickname(params[:nickname]) if params[:nickname]
     @items = @items.search(params[:q]) if params[:q] and !params[:q].empty?
     @items = @items.page(params[:item]).per(10)
   end
@@ -79,7 +78,7 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :description, :category_id, :url)
+      params.require(:item).permit(:name, :description, :category_id, :url, :nickname)
     end
 
     def set_categories
