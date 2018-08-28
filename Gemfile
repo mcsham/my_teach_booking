@@ -73,3 +73,5 @@ gem 'kaminari'
 gem 'bullet', group: 'development'
 gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master',group: 'development'
 gem 'rails-i18n', github: 'svenfuchs/rails-i18n', branch: 'master' # For 5.x
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.47'

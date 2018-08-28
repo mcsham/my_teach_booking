@@ -43,3 +43,7 @@ en:
     image: "Image"
     description: "Description"
     comment: "Comment"
+    date: "Date limits"
+    start: "start"
+    end:  "end"
+
