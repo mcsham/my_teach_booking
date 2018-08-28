@@ -1,6 +1,5 @@
 class RentController < ApplicationController
   before_action :set_item, only: %i[destroy]
-  before_action :set_categories
   before_action :authenticate_user!
 
   def index
@@ -8,9 +7,11 @@ class RentController < ApplicationController
   end
 
   def new
+    @rent = current_user.rents.build
   end
 
   def create
+    @rent = current_user.rents.build(rents_params)
   end
 
   def destroy
@@ -24,8 +25,8 @@ class RentController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def item_params
-    params.require(:item).permit()
+  def rents_params
+    params.require(:item).permit(:id)
   end
 
 

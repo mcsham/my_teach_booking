@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :authored_reviews, class_name: 'Review'
   has_many :reviews, as: :reviewable
   has_many :items
+  has_many :rents
   belongs_to :city
 
   after_initialize :set_default_role, if: :new_record?
