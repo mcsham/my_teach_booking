@@ -1,10 +1,8 @@
 <div>
-  <h3><%= t "pages.categories" %></h3>
+  <h3><%= t "items.categories" %></h3>
   <%= @categories.map { |c|  link_to( c.title, items_path(category: c.id), class: (@cat_param and @cat_param.include?(c.id.to_s))?"admin":"")}.join(" | ").html_safe  %>
 </div>
-
-<%#= paginate @pages%>
-<h1><%= t "pages.article" %></h1>
+<h1><%= t "helpers.links.page" %></h1>
 <div class="container">
   <div class="row">
     <div class="col-xs-8">
@@ -18,22 +16,21 @@
                   <div class="col-xs-7"><%= a %></div>
                   <div class="col-xs-5">
                     <div class="row">
-                      <div class="col-xs-6"><strong><%= t "pages.categories" %>:</strong></div>
+                      <div class="col-xs-6"><strong><%= t "items.categories" %>:</strong></div>
                       <div class="col-xs-6"><%= link_to(item.category.title, items_path(category: [item.category.id])) %></div>
                     </div>
                     <div class="row">
                       <div class="col-xs-6"><strong><%= t "form.autor" %>:</strong></div>
-                      <div class="col-xs-6"><%= link_to "#{item.user.nickname}", items_path(nickname: item.user.nickname) %> </div>
+                      <div class="col-xs-6"><%= link_to "#{item.user.nickname}", items_path(user_id: item.user.id) %> </div>
                     </div>
-
                   </div>
                 </div>
               </div>
               <div class="row">
                 <br>
                 <div class="col-xs-8"><%= link_to ('<button class="btn btn-primary">' + "#{t "helpers.links.show"}" + '</button>').html_safe, item %></div>
-                <% if current_user%>
-                    <% if (item.user == current_user and current_user.author?) or current_user.admin? %>
+                <% if user_signed_in? %>
+                    <% if ((item.user == current_user) && current_user.author?) || current_user.admin? %>
                         <div class="col-xs-2"><%= link_to ('<button class="btn btn-warning">' + "#{t "helpers.links.edit"}" + '</button>').html_safe, edit_item_path(item) %></div>
                         <div class="col-xs-2"><%= link_to ('<button class="btn btn-danger">' + "#{t "helpers.links.delete"}" + '</button>').html_safe, item, method: :delete, data: {confirm: 'Are you sure?'} %></div>
                     <% end %>
@@ -45,13 +42,14 @@
             <strong> There are results</strong>
           </div>
       <% end %>
+
     </div>
     <div class="col-xs-3">
       <div class="well sidebar-nav">
         <h3><%= t "form.search"%></h3>
         <form action="<%= items_path %>" class="navbar-form" method="get">
           <div class="form-group">
-            <input type="text" name="q" class="form-control" placeholder=<%= t "form.search"%> value="<%= params[:q] %>">
+          <input type="text" name="q" class="form-control" placeholder=<%= t "form.search"%> value="<%= params[:q] %>">
             <% @categories.map do |f| %>
                 <div>
                   <input type="checkbox" name="category[]" , value=<%= f.id %>>

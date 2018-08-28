@@ -7,6 +7,12 @@
     <div class="col-sm-8">
       <%= link_to(@category.title, items_path(category: @category.id)) %>
     </div>
+    <div class="col-sm-1">
+      <button class="btn btn-primary" value="Input Button" onclick="location.href = '<%= items_path %>'"><%= t "helpers.links.back" %></button>
+    </div>
+    <div class="col-sm-1">
+      <button class="btn btn-warning" value="Input Button" onclick="location.href = '<%= edit_item_path(@item) %>'"><%= t "helpers.links.edit" %></button>
+    </div>
   </div>
   <hr>
   <div class="row">
@@ -34,13 +40,9 @@
       <%= @item.description %>
     </div>
   </div>
-  <hr>
-  <div class="row">
-    <div class="col-sm-10">
-      <button class="btn btn-primary" value="Input Button" onclick="location.href = '<%= items_path %>'"><%= t "helpers.links.back" %></button>
-    </div>
-    <div class="col-sm-2">
-      <button class="btn btn-warning" value="Input Button" onclick="location.href = '<%= edit_item_path(@item) %>'"><%= t "helpers.links.edit" %></button>
-    </div>
-  </div>
+</div>
+<hr>
+<h3> <%= t "items.comment" %>:</h3>
+<div class="container">
+
 </div>

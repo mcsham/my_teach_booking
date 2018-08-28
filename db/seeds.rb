@@ -10,7 +10,9 @@ cities.each do|city|
   City.create(title: city)
 end
 categities = %w[technicis sport software]
+
 categities.each do |categoty|
   Category.create(title: categoty)
 end
+
 

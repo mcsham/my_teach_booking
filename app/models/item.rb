@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 class Item < ApplicationRecord
-  has_many :reviews, as: :comment
+  has_many :reviews, as: :reviewable
   belongs_to :category
-  has_many :reviews
   belongs_to :user
 
   validates :name, presence: true
@@ -16,7 +15,7 @@ class Item < ApplicationRecord
   scope :by_category, ->(category_id) do
         joins(:category).where(categories: { id: category_id })
   end
-  scope :by_nickname, ->(nickname) do
-    joins(:user).where(users: {nickname: nickname})
+  scope :by_user_id, ->(user_id) do
+    joins(:user).where(users: {id: user_id})
   end
 end

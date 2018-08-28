@@ -1,0 +1,45 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+uk:
+  breadcrumbs:
+    application:
+      root: "Index"
+    pages:
+      pages: "Items"
+  helpers:
+    actions: "Actions"
+    links:
+      back: "Back"
+      cancel: "Cancel"
+      confirm: "Are you sure?"
+      destroy: "Delete"
+      new: "New"
+      page: "Список предметів"
+      edit: "Edit"
+      show: "Show"
+      delete: "Delete"
+      users: "Users"
+      start_page: "Home"
+    titles:
+      edit: "Edit %{model}"
+      save: "Save %{model}"
+      new: "New %{model}"
+      delete: "Delete %{model}"
+  items:
+    home: "Головна"
+    categories: "Категорії"
+    log_out: "Вийти"
+    log_in: "Залогуватись"
+    log_up: "Реєстрації"
+    sign: "Вхід"
+    welcome: "Вітаю"
+    new: "Новий предмет"
+    comment: "Коментарі"
+  form:
+    autor:  "Autor"
+    search: "Search"
+    category: "Category"
+    title: "Title"
+    image: "Image"
+    description: "Description"

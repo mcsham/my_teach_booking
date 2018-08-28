@@ -3,7 +3,7 @@ class CreateReviews < ActiveRecord::Migration[5.2]
     create_table :reviews do |t|
       t.string :comment
       t.references :user
-      t.references :comment, polymorphic: true, index: true
+      t.references :reviewable, polymorphic: true, index: true
       t.timestamps
     end
   end

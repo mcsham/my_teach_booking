@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :authored_reviews, class_name: 'Review'
-  has_many :reviews, as: :comment
+  has_many :reviews, as: :reviewable
   has_many :items
   belongs_to :city
 
