@@ -1,4 +1,4 @@
-class RentController < ApplicationController
+class RentsController < ApplicationController
   before_action :set_item, only: %i[destroy]
   before_action :authenticate_user!
 
@@ -7,6 +7,7 @@ class RentController < ApplicationController
   end
 
   def new
+    @item = Item.find(params[:item_id])
     @rent = current_user.rents.build
   end
 
