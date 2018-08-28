@@ -20,8 +20,8 @@ class Item < ApplicationRecord
   end
 
   scope :rented, ->(beg_data, end_data) do
-    b = Rent.arel_table
-    joins(:rents).where(b[:beg_data].lteq(end_data).and(b[:end_data]).gteq(beg_data))
+    r = Rent.arel_table
+    joins(:rents).where(r[:beg_data].lteq(end_data).and(r[:end_data]).gteq(beg_data))
   end
 
   scope :available, ->(beg_data, end_date) do
