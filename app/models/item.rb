@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   has_many :reviews, as: :reviewable
   belongs_to :category
   belongs_to :user
+  has_many :rents
 
   validates :name, presence: true
   validates :description, presence: true
@@ -19,12 +20,12 @@ class Item < ApplicationRecord
     joins(:user).where(users: {id: user_id})
   end
 
-  scope :rented, ->(beg_data, end_data) do
+  scope :rented, ->(beg_date, end_date) do
     r = Rent.arel_table
-    joins(:rents).where(r[:beg_data].lteq(end_data).and(r[:end_data]).gteq(beg_data))
+    joins(:rents).where(r[:beg_date].lteq(end_date).and(r[:end_date].gteq(beg_date)))
   end
 
-  scope :available, ->(beg_data, end_date) do
-    where.not(id: rented(beg_data, end_date))
+  scope :available, ->(beg_date, end_date) do
+    where.not(id: rented(beg_date, end_date))
   end
 end
