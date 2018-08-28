@@ -28,7 +28,9 @@
               </div>
               <div class="row">
                 <br>
-                <div class="col-xs-8"><%= link_to ('<button class="btn btn-primary">' + "#{t "helpers.links.show"}" + '</button>').html_safe, item %></div>
+                <div class="col-xs-2"><%= link_to ('<button class="btn btn-primary">' + "#{t "helpers.links.show"}" + '</button>').html_safe, item %></div>
+                <div class="col-xs-4"><%= link_to ('<button class="btn btn-info">' + "#{t "items.get"}" + '</button>').html_safe, new_rent_path %></div>
+
                 <% if user_signed_in? %>
                     <% if ((item.user == current_user) && current_user.author?) || current_user.admin? %>
                         <div class="col-xs-2"><%= link_to ('<button class="btn btn-warning">' + "#{t "helpers.links.edit"}" + '</button>').html_safe, edit_item_path(item) %></div>

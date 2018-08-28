@@ -36,6 +36,7 @@ uk:
     welcome: "Вітаю"
     new: "Новий предмет"
     comment: "Коментарі"
+    get: "Орендувати"
   form:
     autor:  "Autor"
     search: "Search"

@@ -35,6 +35,7 @@ en:
     sign: "Login"
     welcome: "Welcome"
     new: "New item"
+    get: "Rent"
   form:
     autor:  "Autor"
     search: "Search"
