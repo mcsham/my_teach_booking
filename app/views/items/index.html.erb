@@ -23,7 +23,7 @@
                     </div>
                     <div class="row">
                       <div class="col-xs-6"><strong><%= t "form.autor" %>:</strong></div>
-                      <div class="col-xs-6"><%= link_to "#{item.user.email}", items_path(email: item.user.email) %> </div>
+                      <div class="col-xs-6"><%= link_to "#{item.user.name}", items_path(email: item.user.email) %> </div>
                     </div>
 
                   </div>
@@ -66,29 +66,4 @@
   </div>
 </div>
 </div>
-
-
-<!--<table class="table table-hover">-->
-<!--  <thead>-->
-<!--    <tr>-->
-<!--      <th>Title</th>-->
-<!--    </tr>-->
-<!--  </thead>-->
-<!--  <tbody>-->
-<%# if @pages.count > 0 %>
-<%# @pages.each do |page| %>
-<!--        <tr>-->
-<!--          <td><%#= page.title %></td>-->
-<!--          <td><%#= link_to "#{t "helpers.links.show"}", page %></td>-->
-<%# if page.user == current_user  %>
-<!--            <td><%#= link_to "#{t "helpers.links.edit"}", edit_page_path(page) %></td>-->
-<!--            <td><%#= link_to "#{t "helpers.links.delete"}", page, method: :delete, data: {confirm: 'Are you sure?'}  %></td>-->
-<%# end %>
-<!--        </tr>-->
-<%#end else%>
-<!--      <tr><td colspan="4">There are results</td></tr>-->
-<%# end %>
-<!--  </tbody>-->
-<!--</table>-->
-
 <%= paginate @items %>
