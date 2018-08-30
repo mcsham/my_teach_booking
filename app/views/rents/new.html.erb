@@ -1,5 +1,17 @@
-<h1>Rents#new</h1>
-<h1><%= @item.name %> </h1>
+<h1><%= t "rent.new" %></h1>
 <div class="container">
-  <%= render 'form', rent: @rent %>
+  <h3> info:</h3>
+  <dl class="dl-horizontal">
+    <dt><strong><%= t"form.peiod" %>:</strong></dt>
+    <dd><strong><%= "#{@beg_date} - #{@end_date}" %></strong></dd>
+    <dt><strong><%= t"form.title" %>:</strong></dt>
+    <dd><%= @item.name %></dd>
+    <dt><strong><%= t"form.image" %>:</strong></dt>
+    <dd><%= image_tag (@item.url) %></dd>
+    <dt><strong><%= t"form.description" %>:</strong></dt>
+    <dd><%= @item.description %></dd>
+  </dl>
+  <div class="container">
+    <%= render 'form', rent: @rent %>
+  </div>
 </div>

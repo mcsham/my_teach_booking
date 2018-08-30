@@ -36,6 +36,9 @@ en:
     welcome: "Welcome"
     new: "New item"
     get: "Rent"
+  rent:
+    new: "New rent"
+    rent_list: "Rents list"
   form:
     autor:  "Autor"
     search: "Search"
@@ -47,4 +50,5 @@ en:
     date: "Date limits"
     start: "start"
     end:  "end"
+    peiod: "Rental period"
 

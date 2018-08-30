@@ -1,14 +1,16 @@
-<%= simple_form_for(@rent) do |f| %>
+<%= simple_form_for(@rent, url:  item_rents_path) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
-
+    <%= f.input_field :item_id, type: :hidden %>
+    <%= f.input_field :beg_date, as: :string, type: :hidden%>
+    <%= f.input_field :end_date, as: :string, type: :hidden%>
   <div class="form-inputs" >
     
   </div>
 
   <div class="form-actions row">
     <div class="col-xs-11 col-sm-11 col-md-11">
-      <%= f.button :submit %>
+      <%= f.button :submit, class: "btn btn-success" %>
     </div>
     <div class="col-xs-1 col-md-1 col-sm-1">
       <%= link_to ('<button class="btn btn-primary">Back</button>').html_safe, items_path %>

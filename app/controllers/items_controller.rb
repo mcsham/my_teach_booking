@@ -13,13 +13,16 @@ class ItemsController < ApplicationController
     @cat_param = params[:category]
     @items = @items.by_category(@cat_param) if @cat_param
     if params[:beg_date] && params[:end_date]
-      @items = @items.available(params[:beg_date],params[:end_date])
+      @beg_date =params[:beg_date]
+      @end_date = params[:end_date]
     else
-      @items = @items.available(Time.now, 1.day.from_now)
+      @beg_date = Time.new.to_date
+      @end_date = 1.day.from_now.to_date
     end
-
-    @items = @items.by_nickname(params[:nickname]) if params[:nickname]
+    @items = @items.available(@beg_date, @end_date)
+    @items = @items.by_user_id(params[:user_id]) if params[:user_id]
     @items = @items.search(params[:q]) if params[:q] && !params[:q].empty?
+
     @items = @items.page(params[:item]).per(10)
   end
 
