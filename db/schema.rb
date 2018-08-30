@@ -48,11 +48,11 @@ ActiveRecord::Schema.define(version: 2018_08_28_175307) do
   create_table "reviews", force: :cascade do |t|
     t.string "comment"
     t.integer "user_id"
-    t.string "comment_type"
-    t.integer "comment_id"
+    t.string "reviewable_type"
+    t.integer "reviewable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["comment_type", "comment_id"], name: "index_reviews_on_comment_type_and_comment_id"
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable_type_and_reviewable_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 

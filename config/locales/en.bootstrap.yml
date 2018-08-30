@@ -36,6 +36,7 @@ en:
     welcome: "Welcome"
     new: "New item"
     get: "Rent"
+    renter: "renter"
   rent:
     new: "New rent"
     rent_list: "Rents list"

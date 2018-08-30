@@ -6,8 +6,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_many :rents
 
-  validates :name, presence: true
-  validates :description, presence: true
+  validates :name,:description, presence: true
 
   scope :search, ->(query) do
                    where("title LIKE ('%#{query}%')").

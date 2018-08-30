@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.json
   def index
-    @items = Item.includes(:user, :category)
+    @items = Item.includes(:user, :category, :reviews)
     @cat_param = params[:category]
     @items = @items.by_category(@cat_param) if @cat_param
     if params[:beg_date] && params[:end_date]
@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
     @items = @items.by_user_id(params[:user_id]) if params[:user_id]
     @items = @items.search(params[:q]) if params[:q] && !params[:q].empty?
 
-    @items = @items.page(params[:item]).per(10)
+    @items = @items.page(params[:page]).per(10)
   end
 
   # GET /items/1
