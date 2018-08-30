@@ -51,12 +51,25 @@
         <form action="<%= items_path %>" class="navbar-form" method="get">
           <div class="form-group">
           <input type="text" name="q" class="form-control" placeholder=<%= t "form.search"%> value="<%= params[:q] %>">
-            <% @categories.map do |f| %>
-                <div>
-                  <input type="checkbox" name="category[]" , value=<%= f.id %>>
-                  <label><%= f.title %></label>
-                </div>
-            <% end %>
+            <br><br>
+           <span> <%= t "items.categories" %>:</span>
+              <div class="container">
+                <% @categories.map do |f| %>
+                    <div>
+                      <input type="checkbox" name="category[]" , value=<%= f.id %>>
+                      <label><%= f.title %></label>
+                    </div>
+                <% end %>
+            </div>
+            <span> <%= t "item.cities" %>:</span>
+              <div class="container">
+                <% @cities.map do |f| %>
+                    <div>
+                      <input type="checkbox" name="city[]" , value=<%= f.id %>>
+                      <label><%= f.title %></label>
+                    </div>
+                <% end %>
+            </div>
           </div>
           <h3><%= "#{t"form.date"}" %>:</h3>
           <div class="row">

@@ -10,6 +10,7 @@ class ItemsController < ApplicationController
   # GET /items.json
   def index
     @items = Item.includes(:user, :category, :reviews)
+    @cities = City.all
     @cat_param = params[:category]
     @items = @items.by_category(@cat_param) if @cat_param
     if params[:beg_date] && params[:end_date]
