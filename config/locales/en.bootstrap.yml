@@ -39,6 +39,10 @@ en:
   rent:
     new: "New rent"
     rent_list: "Rents list"
+    rent_item: "Rents item"
+    rent_beg: "Begining rents item"
+    rent_end: "Ending rents item"
+
   form:
     autor:  "Autor"
     search: "Search"

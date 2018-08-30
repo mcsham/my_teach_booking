@@ -1,6 +1,25 @@
 <h1><%= t "rent.rent_list" %></h1>
 <div class="container">
   <table class="table table-striped">
-
+  <thead>
+    <tr>
+      <th> <%= t "rent.rent_item" %> </th>
+      <th> <%= t "rent.rent_beg" %> </th>
+      <th> <%= t "rent.rent_end" %> </th>
+      <th> <%= t "helpers.links.delete" %> </th>
+    </tr>
+  </thead>
+    <tbody>
+    <% @rents.each do |rent| %>
+    <tr>
+      <td> <%= link_to rent.item.name, rent.item %></td>
+      <td> <%= "#{rent.beg_date.to_date}" %></td>
+      <td> <%= "#{rent.end_date.to_date}" %></td>
+      <% if current_user.admin? %>
+        <td> <%= link_to ('<button class="btn btn-danger">' + "#{t "helpers.links.delete"}" + '</button>').html_safe, rent, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <% end %>
+    </tr>
+    <% end %>
+    </tbody>
   </table>
 </div>
